@@ -4,11 +4,11 @@
 console.log(typeof null);
 
 
-let a = 1;
-let b = a;
-console.log(a, b);
-b = 3;
-console.log(a, b);
+let a1 = 1;
+let b1 = a1;
+console.log(a1, b1);
+b1 = 3;
+console.log(a1, b1);
 
 const ogg1 = {
     valore: 2,
@@ -34,7 +34,7 @@ const person = {
     },
     [nomeProprieta]: 32, //braket notation
     introduce: function () {
-        console.log(`hi, I'm ${this.name[0]}. ${this.address.city}`);
+        console.log(`hi, I'm ${this.name[0]}. ${this.address.city}`);//usa gli accenti gravi alt+96
     }
 };
 person.introduce();
@@ -65,3 +65,45 @@ io.addLastName("Rizzi");
 lui.addLastName("Caputo");
 console.log(io.lastname);
 console.log(lui.lastname);
+
+
+//destructuring
+const coord = {
+    x: 100,
+    y: 200,
+};
+const { x, y } = coord; //questa è la riga fondamentale
+console.log(x);
+console.log(y);
+const { x: new1, y: new2 } = coord; //cambio nomi
+
+//rest operator
+const oggt = { a: 100, b: 200, c: 300, d: 400, e: 500 };
+const { a, b, ...args } = oggt;
+console.log(a);
+console.log(b);
+console.log(args);//args contiene c d e
+
+const pers = {
+    name: "Fabrizio",
+    city: "Milano",
+    age: 32,
+    introduce: function () {
+        console.log("Ciao, sono " + this.name);
+    }
+};
+const { introduce, ...soloDatiAnagrafici } = pers;
+console.log(soloDatiAnagrafici);
+
+
+//copia di un oggetto
+const persona = {
+    name: "Fabrizio",
+    address: {
+        city: "Milano",
+    },
+    birthday: new Date(),
+};
+const personCopy = { ...persona }; //shallow copy: oggetto diventa reference
+const personCopy2 = Object.assign({}, persona); //array.from //shallow copy
+const personCopy3 = JSON.parse(JSON.stringify(persona)); //deep copy: data diventa stringa
